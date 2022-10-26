@@ -10,7 +10,7 @@ using namespace std;
 
 const int startx=2,starty=2,a=51,b=101,enda=a-3,endb=b-3;
 
-int n[a][b],v[a][b],f[a][b],nowcount=0,total=((b-3)/2)*((a-3)/2),dir[4][2]={{0,1},{0,-1},{1,0},{-1,0}};
+int n[a][b],v[a][b],f[a][b],nowcount=0,total=((b-2)/2)*((a-2)/2),dir[4][2]={{0,1},{0,-1},{1,0},{-1,0}};
 
 
 bool r[4];
