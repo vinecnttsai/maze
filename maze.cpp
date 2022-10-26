@@ -10,7 +10,7 @@ using namespace std;
 
 const int startx=2,starty=2,a=51,b=101,enda=a-3,endb=b-3;
 
-int n[a][b],v[a][b],f[a][b],nowcount=0,total=((b-3)/2)*((a-3)/2),dir[4][2]={{1,0},{0,1},{-1,0},{0,-1}};
+int n[a][b],v[a][b],f[a][b],nowcount=0,total=((b-3)/2)*((a-3)/2),dir[4][2]={{0,1},{0,-1},{1,0},{-1,0}};
 
 
 bool r[4];
@@ -234,47 +234,15 @@ int count_visit(int pos,int pos2)
     int num=0,i;
 
     for(i=0;i<4;i++)r[i]=false;
-
-    if(!v[pos][pos2+2])
-
+    
+    for(i=0;i<4;i++)
     {
-
-        num++;
-
-        r[0]=true;
-
+        if(!v[pos+2*dir[i][0]][pos2+2*dir[i][1]])
+        {
+            num++;
+            r[i]=true;
+        }
     }
-
-    if(!v[pos][pos2-2])
-
-    {
-
-        num++;
-
-        r[1]=true;
-
-    }
-
-    if(!v[pos+2][pos2])
-
-    {
-
-        num++;
-
-        r[2]=true;
-
-    }
-
-    if(!v[pos-2][pos2])
-
-    {
-
-        r[3]=true;
-
-        num++;
-
-    }
-
     return num;
 
 }
