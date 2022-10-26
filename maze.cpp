@@ -248,167 +248,55 @@ int count_visit(int pos,int pos2)
 }
 
 void dfs(int posx,int posy)
-
 {
 
     int c,i;
     
-
+    if(nowcount>=total)return;
+    
     c=count_visit(posx, posy);
+    
+    if(!v[posx][posy])nowcount++;
+    if(c)p.inset(p.begin(),{posx,posy});
+    v[posx][posy]=true;
 
     if(c==1)
-
     {
-
-        if(nowcount>=total)return;
-
-        p.insert(p.begin(),{posx,posy});
-
-        if(v[posx][posy])nowcount++;
-
-        v[posx][posy]=true;
-
-        if(r[0])
-
+        
+        for(int i=0;i<4;i++)
         {
-
-            n[posx][posy+1]=1;
-
-            dfs(posx,posy+2);
-
-        }
-
-        else if(r[1])
-
-        {
-
-            n[posx][posy-1]=1;
-
-            dfs(posx,posy-2);
-
-        }
-
-        else if(r[2])
-
-        {
-
-            n[posx+1][posy]=1;
-
-            dfs(posx+2,posy);
-
-        }
-
-        else if(r[3])
-
-        {
-
-            n[posx-1][posy]=1;
-
-            dfs(posx-2,posy);
-
+            if(r[i])
+            {
+                n[posx+dir[i][0]][posy+dir[i][1]]=1;
+                dfs(posx+dir[i][0]*2,posy+dir[i][1]*2);
+            }
         }
 
     }
-
     else if(c>1)
-
     {
-
-        if(nowcount>=total)return;
-
         while(true)
-
         {
-
             i=rand()%4;
-
             if(r[i])
-
             {
-
-                p.insert(p.begin(),{posx,posy});
-
-                if(v[posx][posy])nowcount++;
-
-                v[posx][posy]=true;
-
-                if(i==0)
-
-                {
-
-                    n[posx][posy+1]=1;
-
-                    dfs(posx,posy+2);
-
-                }
-
-                else if(i==1)
-
-                {
-
-                    n[posx][posy-1]=1;
-
-                    dfs(posx,posy-2);
-
-                }
-
-                else if(i==2)
-
-                {
-
-                    n[posx+1][posy]=1;
-
-                    dfs(posx+2,posy);
-
-                }
-
-                else if(i==3)
-
-                {
-
-                    n[posx-1][posy]=1;
-
-                    dfs(posx-2,posy);
-
-                }
-
+                n[posx+dir[i][0][posy+dir[i][1]]=1;
+                dfs(posx+dir[i][0]*2,posy+dir[i][1]*2);
                 break;
 
             }
-
-            else
-
-            {
-
-                i=rand()%4;
-
-            }
+            else i=rand()%4;
 
         }
 
     }
-
     else if(c==0)
-
     {
-
-        if(nowcount>=total)return;
-
-        v[posx][posy]=true;
-
-        nowcount++;
-
         posx=p.front().x;
-
         posy=p.front().y;
-
         p.erase(p.begin());
-
         dfs(posx,posy);
-
     }
-
-    
 
 }
 void find_way_first()
