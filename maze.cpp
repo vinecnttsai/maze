@@ -37,7 +37,7 @@ int main()
     
     void bfs(int n,int nowa,int nowb);
 
-    void dfs(int posx,int posy);//用的時候要clear p陣列
+    void dfs(int posx,int posy);
     
     void find_way_first();
 
@@ -49,7 +49,7 @@ int main()
     
     p.clear();
 
-    dfs(startx,starty);//用的時候要clear p陣列
+    dfs(startx,starty);
     
     n[enda][endb]=2;
     
@@ -61,7 +61,7 @@ int main()
     
     p.clear();
     
-    find_way(startx, starty);//用的時候要clear p陣列
+    find_way(startx, starty);
     
     print_maze();
 
@@ -109,9 +109,7 @@ void print_maze()
                     cout<<"r";
                     
                     break;
-
             }
-
         }
 
         cout<<endl;
