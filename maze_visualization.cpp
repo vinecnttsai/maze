@@ -452,45 +452,31 @@ void find_way(int nowa,int nowb)
     print_maze();
     if(nowa==enda&&nowb==endb)
     {
-        n[enda][endb]=2;
-n[starta][startb]=2;
-        return;
+         n[enda][endb]=2;
+         n[starta][startb]=2;
+         return;
     }
    
     n[nowa][nowb]=2;
    
-    if(n[nowa+1][nowb]==1&&f[nowa+1][nowb])
+    bool falg=false;
+    for(int i=0;i<4;i++)
     {
-        fa.insert(fa.begin(),nowa);
-        fb.insert(fb.begin(),nowb);
-        find_way(nowa+1, nowb);
+        int newa=nowa+dir[i][0],newb=nowb+dir[i][1];
+        if(n[newa][newb]==1&&f[newa][newb])
+        {
+            p.insert(p.begin(),{nowa,nowb});
+            find_way(newa,newb);
+            flag=true;
+        }
     }
-    else if(n[nowa-1][nowb]==1&&f[nowa-1][nowb])
-    {
-        fa.insert(fa.begin(),nowa);
-        fb.insert(fb.begin(),nowb);
-        find_way(nowa-1, nowb);
-    }
-    else if(n[nowa][nowb+1]==1&&f[nowa][nowb+1])
-    {
-        fa.insert(fa.begin(),nowa);
-        fb.insert(fb.begin(),nowb);
-        find_way(nowa, nowb+1);
-    }
-    else if(n[nowa][nowb-1]==1&&f[nowa][nowb-1])
-    {
-        fa.insert(fa.begin(),nowa);
-        fb.insert(fb.begin(),nowb);
-        find_way(nowa, nowb-1);
-    }
-    else
+    if(!flag)
     {
         n[nowa][nowb]=1;
         f[nowa][nowb]=false;
-        nowa=fa[0];
-        nowb=fb[0];
-        fa.erase(fa.begin());
-        fb.erase(fb.begin());
+        nowa=p.front().x;
+        nowb=p.front().y;
+        p.erase(p.begin());
         find_way(nowa, nowb);
     }
    
