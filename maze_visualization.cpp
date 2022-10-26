@@ -18,7 +18,7 @@ const int starta=2,startb=2,a=81,b=81,pia=1520,pib=1520,enda=a-3,endb=b-3;
 
 const float spacea=pia/a,spaceb=pib/b;
 
-int n[a][b],v[a][b],f[a][b],nowcount=0,total=((b)/2)*((a)/2),posa=0,posb=0,rate=2000,dir[4][2]={{0,1},{0,-1},{1,0},{-1,0}};
+int n[a][b],v[a][b],f[a][b],nowcount=0,total=((b-2)/2)*((a-2)/2),posa=0,posb=0,rate=2000,dir[4][2]={{0,1},{0,-1},{1,0},{-1,0}};
 
 bool r[4];
 
