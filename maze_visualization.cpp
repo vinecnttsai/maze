@@ -18,7 +18,7 @@ const int starta=2,startb=2,a=81,b=81,pia=1520,pib=1520,enda=a-3,endb=b-3;
 
 const float spacea=pia/a,spaceb=pib/b;
 
-int n[a][b],v[a][b],f[a][b],nowcount=0,total=((b)/2)*((a)/2),posa=0,posb=0,rate=2000;
+int n[a][b],v[a][b],f[a][b],nowcount=0,total=((b)/2)*((a)/2),posa=0,posb=0,rate=2000,dir[4][2]={{0,1},{0,-1},{1,0},{-1,0}};
 
 bool r[4];
 
@@ -26,7 +26,13 @@ RectangleShape re;
    
 RenderWindow window(VideoMode(pia, pib), "My window");
 
-vector<int> x,y,fa,fb;
+
+struct point
+{
+   int x,y;
+};
+point temp;
+vector<point> p;
 
 int main()
 
@@ -244,7 +250,9 @@ void dfs(int posx,int posy)
     c=count_visit(posx, posy);
     
     if(!v[posx][posy])nowcount++;
-    if(c)p.inset(p.begin(),{posx,posy});
+    temp.x=posx;
+    temp.y=posy;
+    if(c)p.insert(p.begin(),temp);
     v[posx][posy]=true;
 
     if(c==1)
@@ -267,7 +275,7 @@ void dfs(int posx,int posy)
             i=rand()%4;
             if(r[i])
             {
-                n[posx+dir[i][0][posy+dir[i][1]]=1;
+                n[posx+dir[i][0]][posy+dir[i][1]]=1;
                 dfs(posx+dir[i][0]*2,posy+dir[i][1]*2);
                 break;
 
@@ -307,13 +315,15 @@ void find_way(int nowa,int nowb)
    
     n[nowa][nowb]=2;
    
-    bool falg=false;
+    bool flag=false;
     for(int i=0;i<4;i++)
     {
         int newa=nowa+dir[i][0],newb=nowb+dir[i][1];
         if(n[newa][newb]==1&&f[newa][newb])
         {
-            p.insert(p.begin(),{nowa,nowb});
+            temp.x=nowa;
+            temp.y=nowb;
+            p.insert(p.begin(),temp);
             find_way(newa,newb);
             flag=true;
         }
