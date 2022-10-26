@@ -222,45 +222,14 @@ int count_visit(int pos,int pos2)
 
 
     for(i=0;i<4;i++)r[i]=false;
-
-    if(!v[pos][pos2+2])
-
+    
+    for(i=0;i<4;i++)
     {
-
-        num++;
-
-        r[0]=true;
-
-    }
-
-    if(!v[pos][pos2-2])
-
-    {
-
-        num++;
-
-        r[1]=true;
-
-    }
-
-    if(!v[pos+2][pos2])
-
-    {
-
-        num++;
-
-        r[2]=true;
-
-    }
-
-    if(!v[pos-2][pos2])
-
-    {
-
-        r[3]=true;
-
-        num++;
-
+        if(!v[pos+2*dir[i][0]][pos2+2*dir[i][1]])
+        {
+            num++;
+            r[i]=true;
+        }
     }
 
     return num;
