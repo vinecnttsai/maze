@@ -76,38 +76,22 @@ void print_maze()
     int i,k;
 
     for(i=0;i<a;i++)
-
     {
-
         for(k=0;k<b;k++)
-
         {
-
             switch(n[i][k])
-
             {
-
                 case 0:
-
                     cout<<"█";
-
                     break;
-
                 case 1:
-
                     cout<<" ";
-
                     break;
-
                 case 2:
-
                     cout<<"o";
-
                     break;
                 case 3:
-                    
                     cout<<"r";
-                    
                     break;
             }
         }
@@ -117,7 +101,6 @@ void print_maze()
     }
 
 }
-
 void create_maze()
 
 {
@@ -125,106 +108,59 @@ void create_maze()
     int i,k;
 
     for(i=0;i<a;i++)
-
+    {
         for(k=0;k<b;k++)
-
         {
-
             n[i][k]=0;
-
             v[i][k]=true;
-            
-
         }
+    }
 
     for(i=0;i<a;i++)
-
     {
-
         n[i][0]=1;
-
         n[i][b-1]=1;
-
         v[i][0]=true;
-
         v[i][b-1]=true;
-        
-
     }
 
     for(i=0;i<b;i++)
-
     {
-
         n[0][i]=1;
-
         n[a-1][i]=1;
-
         v[0][i]=true;
-
         v[a-1][i]=true;
-        
 
     }//外層空氣牆
-
-    
-
-    
-
     for(i=2;i<a-2;i++)
-
     {
-
         for(k=2;k<b-2;k++)
-
         {
-
             n[i][k]=1;
-
             v[i][k]=false;
-
         }
-
     }//內層道路
 
     for(i=2;i<a-2;i+=2)
-
     {
-
         for(k=3;k<b-2;k+=2)
-
         {
-
             n[i][k]=0;
-
             v[i][k]=true;
-
         }
-
     }
-
     for(i=3;i<a-2;i+=2)
-
     {
-
         for(k=2;k<b-2;k++)
-
         {
-
             n[i][k]=0;
-
             v[i][k]=true;
-
         }
-
     }
 
-    n[startx][starty]=2;
-
-
+    n[starta][startb]=2;
 
 }
-
 int count_visit(int pos,int pos2)
 
 {
@@ -281,10 +217,8 @@ void dfs(int posx,int posy)
                 n[posx+dir[i][0][posy+dir[i][1]]=1;
                 dfs(posx+dir[i][0]*2,posy+dir[i][1]*2);
                 break;
-
             }
             else i=rand()%4;
-
         }
 
     }
@@ -316,7 +250,7 @@ void find_way(int nowa,int nowb)
     
     n[nowa][nowb]=2;
     
-    bool falg=false;
+    bool flag=false;
     for(int i=0;i<4;i++)
     {
         int newa=nowa+dir[i][0],newb=nowb+dir[i][1];
