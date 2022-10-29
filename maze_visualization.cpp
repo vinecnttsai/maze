@@ -210,6 +210,7 @@ void dfs(int posx,int posy)
     if(nowcount>=total)return;
     
     c=count_visit(posx, posy);
+    print_maze();
     
     if(!v[posx][posy])nowcount++;
     temp.x=posx;
