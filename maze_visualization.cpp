@@ -164,15 +164,15 @@ void print_maze()
             {
                 if(n[i][k]==0)
                 {
-                re.setFillColor(Color::Black);
+                  re.setFillColor(Color::Black);
                 }
                 else if(n[i][k]==1)
                 {
-                re.setFillColor(Color::White);
+                  re.setFillColor(Color::White);
                 }
                 else
                 {
-                re.setFillColor(Color::Red);
+                  re.setFillColor(Color::Red);
                 }
                 re.setPosition(Vector2f(spacea*i,spaceb*k));
                 window.draw(re);
