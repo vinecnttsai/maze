@@ -325,6 +325,7 @@ void find_way(int nowa,int nowb)
             p.insert(p.begin(),{nowa,nowb});
             find_way(newa,newb);
             flag=true;
+            break;
         }
     }
     if(!flag)
