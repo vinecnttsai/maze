@@ -96,41 +96,27 @@ void create_maze()
     int i,k;
 
     for(i=0;i<a;i++)
-
+    {
         for(k=0;k<b;k++)
-
         {
-
             n[i][k]=0;
-
             v[i][k]=true;
-
         }
+    }
 
     for(i=0;i<a;i++)
-
     {
-
         n[i][0]=1;
-
         n[i][b-1]=1;
-
         v[i][0]=true;
-
         v[i][b-1]=true;
-
     }
 
     for(i=0;i<b;i++)
-
     {
-
         n[0][i]=1;
-
         n[a-1][i]=1;
-
         v[0][i]=true;
-
         v[a-1][i]=true;
 
     }//外層空氣牆
@@ -140,56 +126,32 @@ void create_maze()
    
 
     for(i=2;i<a-2;i++)
-
     {
-
         for(k=2;k<b-2;k++)
-
         {
-
             n[i][k]=1;
-
             v[i][k]=false;
-
         }
-
     }//內層道路
 
     for(i=2;i<a-2;i+=2)
-
     {
-
         for(k=3;k<b-2;k+=2)
-
         {
-
             n[i][k]=0;
-
             v[i][k]=true;
-
         }
-
     }
-
     for(i=3;i<a-2;i+=2)
-
     {
-
         for(k=2;k<b-2;k++)
-
         {
-
             n[i][k]=0;
-
             v[i][k]=true;
-
         }
-
     }
 
     n[starta][startb]=2;
-
-
 
 }
 void print_maze()
@@ -326,6 +288,7 @@ void find_way(int nowa,int nowb)
             p.insert(p.begin(),temp);
             find_way(newa,newb);
             flag=true;
+            break;
         }
     }
     if(!flag)
